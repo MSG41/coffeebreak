@@ -40,7 +40,7 @@ import { ref, computed } from 'vue'
 export default {
   name: 'CoffeeComponent',
   setup() {
-    const coffeeOptions = ref([
+    const coffeeOptions = ref<string[]>([
       'Black',
       'Flat White',
       'Latte',
@@ -57,9 +57,9 @@ export default {
       'Cafe Au Lait'
     ])
 
-    const selectedOption = ref(coffeeOptions.value[0]) // Added here
+    const selectedOption = ref<string>(coffeeOptions.value[0])
 
-    const selectOption = (option) => {
+    const selectOption = (option: string) => {
       selectedOption.value = option
     }
 
