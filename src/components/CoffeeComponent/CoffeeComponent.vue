@@ -6,6 +6,7 @@
         :key="index"
         :style="{ '--i': index + 1 }"
         @click="selectOption(option)"
+        :class="{ selected: option === selectedOption }"
       >
         {{ option }}
       </div>
@@ -14,7 +15,7 @@
     <div class="wrapper">
       <div class="shadow"></div>
       <div class="title">{{ selectedOption }}</div>
-      <div class="cup" :class="[formatOption, 'cup']">
+      <div class="cup" :class="[formatOption, 'cup']" @click="selectRandomOption">
         <div class="contents">
           <div class="gelato">gelato</div>
           <div class="foam">milk foam</div>
@@ -26,7 +27,7 @@
           <div class="whiskey">whiskey</div>
           <div class="water">water</div>
           <div class="coffee">coffee</div>
-          <div class="espresso"><span>(2)&nbsp;</span> espresso</div>
+          <div class="espresso">espresso</div>
         </div>
       </div>
     </div>
@@ -56,10 +57,15 @@ export default {
       'Cafe Au Lait'
     ])
 
-    const selectedOption = ref(coffeeOptions.value[0])
+    const selectedOption = ref(coffeeOptions.value[0]) // Added here
 
-    const selectOption = (option: string) => {
+    const selectOption = (option) => {
       selectedOption.value = option
+    }
+
+    const selectRandomOption = () => {
+      const randomIndex = Math.floor(Math.random() * coffeeOptions.value.length)
+      selectedOption.value = coffeeOptions.value[randomIndex]
     }
 
     const formatOption = computed(() => {
@@ -69,8 +75,9 @@ export default {
     return {
       coffeeOptions,
       selectedOption,
-      selectOption,
-      formatOption
+      selectRandomOption,
+      formatOption,
+      selectOption
     }
   }
 }

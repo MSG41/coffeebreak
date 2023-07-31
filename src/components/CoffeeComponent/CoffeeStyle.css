@@ -47,6 +47,7 @@ body {
 .options > div {
   transition: all 0.1s ease-in-out;
 }
+.options > div.selected,
 .options > div:hover {
   background: rgba(255, 255, 255, 1);
   cursor: pointer;
@@ -55,9 +56,9 @@ body {
     0 0 3px 0 rgba(0, 0, 0, 0.1);
   color: #462814be;
 }
-.options:hover > * {
+/* .options:hover > * {
   animation-play-state: paused;
-}
+} */
 
 .options {
   background: none;
